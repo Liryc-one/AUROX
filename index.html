@@ -1,0 +1,385 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurox — Stake. Lend. Earn.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --gold:#FFD700;
+      --gold-deep:#C9A227;
+      --black:#0A0A0A;
+      --ink:#101010;
+      --slate:#141414;
+      --muted:#9BA3AF;
+      --silver:#C0C0C0;
+      --blue:#00CFFF;
+      --green:#39FF14;
+      --radius:18px;
+      --shadow:0 8px 30px rgba(0,0,0,.45);
+      --glow:0 0 18px rgba(255,215,0,.45),0 0 42px rgba(255,215,0,.25);
+    }*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; color:#EDEDED; background: radial-gradient(1200px 600px at 70% -20%, rgba(255,215,0,.08), transparent 60%), #0A0A0A;
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height:1.6;
+}
+a{color:inherit; text-decoration:none}
+img{max-width:100%; display:block}
+
+/* ----- Header ----- */
+.container{width:min(1200px, 92vw); margin-inline:auto}
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter: blur(6px);
+  background:rgba(10,10,10,.6);
+  border-bottom:1px solid rgba(255,215,0,.12);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0;
+}
+.brand{display:flex; gap:12px; align-items:center}
+.logo-badge{
+  width:40px; height:40px; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, var(--gold) 0 35%, var(--gold-deep) 36% 100%);
+  position:relative; box-shadow: var(--glow);
+}
+.logo-badge::after{
+  content:""; position:absolute; inset:6px; border:2px solid #111; border-radius:50%;
+}
+.brand h1{font: 800 20px/1 Playfair Display, serif; letter-spacing:.4px}
+.brand small{display:block; font:600 10px/1 JetBrains Mono, monospace; color:var(--muted)}
+
+nav a{padding:10px 16px; border-radius:12px; font-weight:600; color:#DFDFDF}
+nav a:hover{background:rgba(255,215,0,.08); box-shadow: inset 0 0 0 1px rgba(255,215,0,.2)}
+
+.cta{
+  display:flex; gap:12px; align-items:center
+}
+.btn{padding:12px 16px; border-radius:14px; font-weight:700; border:1px solid rgba(255,215,0,.35); background:transparent; color:#fff; transition:.25s ease; cursor:pointer}
+.btn:hover{transform:translateY(-1px); box-shadow:var(--glow)}
+.btn-primary{background:linear-gradient(135deg, var(--gold-deep), var(--gold)); color:#111; border:none}
+.btn-ghost{border-color:rgba(255,215,0,.2); color:#EAEAEA}
+
+/* ----- Hero ----- */
+.hero{position:relative; overflow:hidden}
+.hero-inner{display:grid; grid-template-columns:1.1fr .9fr; gap:40px; align-items:center; padding: clamp(56px, 10vw, 120px) 0}
+@media(max-width:920px){.hero-inner{grid-template-columns:1fr; text-align:center}}
+.eyebrow{font:700 12px/1 JetBrains Mono, monospace; letter-spacing: .14em; color:var(--silver); text-transform:uppercase}
+.headline{font: 800 clamp(36px, 7vw, 64px)/1.1 Playfair Display, serif; margin:14px 0 10px}
+.subhead{color:#CFCFCF; font-size:clamp(15px, 2.3vw, 18px)}
+
+.cta-row{margin-top:26px; display:flex; gap:14px; flex-wrap:wrap; justify-content:flex-start}
+@media(max-width:920px){.cta-row{justify-content:center}}
+
+.hero-art{position:relative; height:420px; display:grid; place-items:center}
+.crest{
+  width:min(360px, 80vw); aspect-ratio:1/1; border-radius:50%;
+  background:radial-gradient(circle at 50% 40%, rgba(255,215,0,.25), rgba(255,215,0,.06) 34%, transparent 35%),
+             radial-gradient(closest-side, rgba(255,215,0,.18), transparent 70%);
+  border:1px solid rgba(255,215,0,.25);
+  box-shadow: var(--glow);
+  position:relative; display:grid; place-items:center;
+  animation:pulse 4.8s ease-in-out infinite;
+}
+@keyframes pulse{ 0%,100%{filter:drop-shadow(0 0 1px rgba(255,215,0,.35))} 50%{filter:drop-shadow(0 0 12px rgba(255,215,0,.55))} }
+
+.crest svg{width:55%; opacity:.95}
+
+/* ----- Section base ----- */
+section{padding:80px 0; position:relative}
+.section-title{font:800 34px/1.2 Playfair Display, serif; margin:0 0 10px}
+.section-lead{color:#d5d5d5; max-width:760px}
+
+/* ----- Features / How it works ----- */
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:28px}
+.card{background: linear-gradient(180deg, rgba(255,215,0,.035), rgba(255,215,0,.015)); border:1px solid rgba(255,215,0,.15); border-radius: var(--radius); padding:22px; box-shadow:var(--shadow)}
+.card h3{margin:10px 0 6px; font-size:20px}
+.card p{margin:0; color:#CFCFCF}
+.icon{width:28px; height:28px; opacity:.9}
+@media(max-width:920px){.grid-3{grid-template-columns:1fr}}
+
+/* ----- Stats ----- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:24px}
+.stat{padding:20px; border:1px dashed rgba(255,215,0,.25); border-radius:16px; text-align:center}
+.stat .num{font:800 28px/1 JetBrains Mono, monospace; color:var(--gold)}
+.stat span{display:block; color:#BDBDBD; margin-top:6px}
+@media(max-width:920px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ----- Roadmap ----- */
+.timeline{margin-top:28px; border-left:2px solid rgba(255,215,0,.25); padding-left:18px}
+.mile{position:relative; margin:22px 0; padding-left:10px}
+.mile::before{content:""; position:absolute; left:-28px; top:4px; width:14px; height:14px; border-radius:50%; background:var(--gold); box-shadow:var(--glow)}
+.mile h4{margin:0 0 6px}
+
+/* ----- Founder Section ----- */
+.founder{
+  display:grid; grid-template-columns: 240px 1fr; gap:28px; align-items:center; margin-top:24px
+}
+.avatar{
+  width:220px; height:220px; border-radius:50%;
+  background: radial-gradient(circle at 30% 30%, var(--gold) 0 34%, var(--gold-deep) 35% 100%);
+  border:2px solid rgba(255,215,0,.35); box-shadow:var(--glow);
+  display:grid; place-items:center;
+  overflow:hidden; position:relative;
+}
+.avatar span{font:900 64px/1 Playfair Display, serif; color:#111}
+@media(max-width:920px){.founder{grid-template-columns:1fr; text-align:center; justify-items:center}}
+
+/* ----- FAQ ----- */
+.faq{margin-top:18px}
+.faq details{border:1px solid rgba(255,215,0,.2); border-radius:14px; padding:14px 16px; margin:10px 0; background:rgba(255,215,0,.03)}
+.faq summary{cursor:pointer; font-weight:700}
+
+/* ----- Footer ----- */
+footer{padding:40px 0; border-top:1px solid rgba(255,215,0,.12); color:#C5C5C5}
+.footgrid{display:grid; grid-template-columns:1.2fr .8fr .8fr; gap:18px}
+@media(max-width:920px){.footgrid{grid-template-columns:1fr; text-align:center}}
+.copyright{margin-top:26px; font-size:13px; color:#9A9A9A}
+
+/* ----- Reveal Animations ----- */
+.reveal{opacity:0; transform:translateY(18px); transition:.6s ease}
+.reveal.in{opacity:1; transform:none}
+/* Mobile nav toggle */
+@media(max-width: 768px){
+  nav {
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    background: rgba(10,10,10,0.95);
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,215,0,.2);
+  }
+  nav.active { display: flex; }
+
+  .menu-toggle {
+    display: block;
+    cursor: pointer;
+    font-size: 24px;
+    color: var(--gold);
+  }
+}
+
+/* Hide hamburger on desktop */
+.menu-toggle { display: none; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo-badge" aria-hidden="true"></div>
+        <div>
+          <h1>Aurox</h1>
+          <small>Stake • Lend • Earn</small>
+        </div>
+      </div>
+      <nav class="hide-mobile">
+        <!-- Add inside header .nav -->
+<div class="menu-toggle">☰</div>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#founder">Founder</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <div class="cta">
+        <a class="btn btn-ghost" href="#docs">Docs</a>
+        <a class="btn btn-primary" href="#app">Launch dApp</a>
+      </div>
+    </div>
+  </header>  <!-- Hero -->  <section class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">Premium DeFi on Sui</div>
+        <h2 class="headline">Automated staking & lending that pays <span style="color:var(--gold)">dividends</span>.</h2>
+        <p class="subhead">Deposit once. Aurox routes funds across protocols like Navi & Scallop, auto-compounds yields, and distributes profits to pool shareholders — with a low 5% performance fee.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#app">Start Earning</a>
+          <a class="btn" href="#how">See how it works</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <div class="crest" aria-hidden="true">
+          <!-- Simple geometric crest echoing the provided logo style -->
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Aurox Crest">
+            <defs>
+              <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#FFD700"/>
+                <stop offset="100%" stop-color="#C9A227"/>
+              </linearGradient>
+            </defs>
+            <path d="M50 10 L85 30 V70 L50 90 L15 70 V30 Z" stroke="url(#g)" stroke-width="4" fill="rgba(255,215,0,0.06)"/>
+            <path d="M50 24 L60 36 L50 48 L40 36 Z" fill="url(#g)"/>
+            <path d="M35 42 v24 l15 8 l15-8 V42" stroke="url(#g)" stroke-width="4" fill="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- How it works -->  <section id="how">
+    <div class="container">
+      <h3 class="section-title">How Aurox Works</h3>
+      <p class="section-lead">One pool. Smart routing. Transparent profits. You receive dividends proportional to your stake.</p>
+      <div class="grid-3 reveal">
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"/></svg>
+          <h3>Deposit</h3>
+          <p>Add SUI or USDC to the pool and receive pool shares representing your position.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l7-9 4 6 7-3-7 15-4-6-7 3z"/></svg>
+          <h3>Auto-Allocate</h3>
+          <p>Strategy engine routes liquidity to vetted protocols (e.g., Navi, Scallop) to maximize risk-adjusted yield.</p>
+        </div>
+        <div class="card">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <h3>Dividends</h3>
+          <p>Profits auto-compound and periodically distribute to holders. A 5% fee aligns incentives.</p>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Features -->  <section id="features">
+    <div class="container">
+      <h3 class="section-title">Why Aurox</h3>
+      <div class="grid-3 reveal">
+        <div class="card">
+          <h3>Security First</h3>
+          <p>Multi-sig treasury, audited strategies, and real-time on-chain transparency.</p>
+        </div>
+        <div class="card">
+          <h3>Low, Fair Fees</h3>
+          <p>Only 5% performance fee. No hidden management costs. You keep more of your yield.</p>
+        </div>
+        <div class="card">
+          <h3>Non-Custodial</h3>
+          <p>Your funds stay in your control with smart contracts you can verify on-chain.</p>
+        </div>
+      </div><div class="stats reveal">
+    <div class="stat"><div class="num" data-count="12.7">$0</div><span>TVL (simulated)</span></div>
+    <div class="stat"><div class="num" data-count="8.3">0%</div><span>APY target (variable)</span></div>
+    <div class="stat"><div class="num" data-count="5">0%</div><span>Performance fee</span></div>
+    <div class="stat"><div class="num" data-count="0">0</div><span>Security incidents</span></div>
+  </div>
+</div>
+
+  </section>  <!-- Roadmap -->  <section id="roadmap">
+    <div class="container">
+      <h3 class="section-title">Roadmap</h3>
+      <p class="section-lead">Transparent milestones to mainnet maturity.</p>
+      <div class="timeline reveal">
+        <div class="mile">
+          <h4>Phase 1 — MVP Pool (Now)</h4>
+          <p>Single-asset deposits, audited core contracts, manual strategy updates.</p>
+        </div>
+        <div class="mile">
+          <h4>Phase 2 — Strategy Router</h4>
+          <p>Automated allocation across Navi & Scallop with risk scoring and circuit breakers.</p>
+        </div>
+        <div class="mile">
+          <h4>Phase 3 — Governance & Analytics</h4>
+          <p>On-chain votes, performance dashboards, public APIs.</p>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- Founder -->  <section id="founder">
+    <div class="container">
+      <h3 class="section-title">About the Founder</h3>
+      <div class="founder reveal">
+        <div class="avatar" aria-hidden="true"><span>CE</span></div>
+        <div>
+          <h4 style="margin:0 0 6px; font-size:26px">Cyril‑Elvis</h4>
+          <p style="margin:0 0 12px; color:#D7D7D7">Web developer • Blockchain & cybersecurity enthusiast • Sui ecosystem builder. Focused on shipping trustworthy, UX-first DeFi products with clear risk controls and transparent, on-chain accounting.</p>
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <a class="btn" href="#" aria-label="GitHub">GitHub</a>
+            <a class="btn" href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a class="btn" href="#" aria-label="X (Twitter)">X</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>  <!-- FAQ -->  <section id="faq">
+    <div class="container">
+      <h3 class="section-title">FAQ</h3>
+      <div class="faq reveal">
+        <details>
+          <summary>Is Aurox custodial?</summary>
+          <p>No. Funds are held in non-custodial smart contracts you can verify. You can withdraw anytime subject to strategy cooldowns.</p>
+        </details>
+        <details>
+          <summary>Where do yields come from?</summary>
+          <p>From lending/borrowing incentives and staking rewards on protocols such as Navi & Scallop. Strategies prioritize risk-adjusted return.</p>
+        </details>
+        <details>
+          <summary>What fees do I pay?</summary>
+          <p>A flat 5% performance fee on realized profits. No deposit or management fees.</p>
+        </details>
+      </div>
+    </div>
+  </section>  <!-- Footer -->  <footer>
+    <div class="container">
+      <div class="footgrid">
+        <div>
+          <div class="brand" style="margin-bottom:10px">
+            <div class="logo-badge" aria-hidden="true"></div>
+            <div>
+              <h1>Aurox</h1>
+              <small>Stake • Lend • Earn</small>
+            </div>
+          </div>
+          <p>Premium, automated yield strategies on Sui. Built for transparency and security.</p>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <p><a href="#how">How it works</a><br><a href="#features">Features</a><br><a href="#founder">Founder</a><br><a href="#faq">FAQ</a></p>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p><a href="#">hello@aurox.defi</a><br><a href="#">Docs</a><br><a href="#">Audit (soon)</a></p>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Aurox. All rights reserved.</div>
+    </div>
+  </footer>  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} })
+    }, {threshold:.15});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    // Stat counters
+    const formatMoney = v=> '$' + v.toLocaleString(undefined,{maximumFractionDigits:1}) + 'M';
+    const formatPct = v=> v.toLocaleString(undefined,{maximumFractionDigits:1}) + '%';
+    const statObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(!e.isIntersecting) return;
+        const numEl = e.target; const target = parseFloat(numEl.dataset.count);
+        const isPercent = numEl.nextElementSibling?.textContent.toLowerCase().includes('fee') || numEl.nextElementSibling?.textContent.toLowerCase().includes('apy');
+        let cur = 0; const dur = 1400; const start = performance.now();
+        function tick(now){
+          const p = Math.min(1, (now-start)/dur); cur = target*p;
+          numEl.textContent = isPercent ? (isNaN(target)? target : formatPct(cur)) : (numEl.nextElementSibling?.textContent.includes('TVL')? formatMoney(cur) : (isNaN(target)? target : cur.toFixed(0)) );
+          if(p<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        statObserver.unobserve(numEl.parentElement);
+      })
+    },{threshold:.4});
+    document.querySelectorAll('.stat .num').forEach(n=>statObserver.observe(n.parentElement));
+    // JS toggle for mobile menu
+document.querySelector('.menu-toggle').addEventListener('click', () => {
+  document.querySelector('nav').classList.toggle('active');
+});
+  </script></body>
+                                      </html>
